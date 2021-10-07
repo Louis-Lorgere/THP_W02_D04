@@ -31,12 +31,34 @@ def highest_below_6000 hash_crypto
   hash_crypto.each { |k, v| puts k if v == hash_crypto.values.max }
 end
 
+def what_action
+  puts "        Quel actions voulez vous faire ?"
+  puts " > Action 1 : Affiche la crypto la plus chère"
+  puts " > Action 2 : Affiche la crypto la moins chère"
+  puts " > Action 3 : Toutes les cryptos inférieures à 6000 en valeur"
+  puts " > Action 4 : La crypto la plus chères inférieur à 6000"
+  print " > "
+  input = gets.chomp.to_i
+  while (input < 1  || input > 4)
+    puts "Choississez un nombre comporis entre 1 et 4 !"
+    input = gets.chomp.to_i
+  end
+  puts " > Action #{input} séléctionné !"
+  return (input)
+end
+
 def process
   hash_crypto = convert_arrays
-  highest(hash_crypto)
-  lowest(hash_crypto)
-  under_6000(hash_crypto)
-  highest_below_6000(hash_crypto)
+  choice = what_action
+  if choice == 1
+    highest(hash_crypto)
+  elsif choice == 2
+    lowest(hash_crypto)
+  elsif choice == 3
+    under_6000(hash_crypto)
+  elsif choice == 4
+    highest_below_6000(hash_crypto)
+  end
 end
 
 process
